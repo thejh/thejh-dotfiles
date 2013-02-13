@@ -22,6 +22,15 @@ __user_symbol() {
 
 PS1="\[$Green\]\h\[$Color_Off\]:\[$Red\]\w\[$Yellow\]\$(__git_ps1 ' (%s)' | sed 's|[^ ]*/||g' | sed 's|)||')\[$Color_Off\]\n\[$BIWhite\]\$(__user_symbol)\[$Color_Off\] "
 
+
+# append to the history file, don't overwrite it
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+shopt -s histappend
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
 # User specific aliases and functions
 skypeips() {
   addrs=$(netstat --tcp --udp -n -p 2>/dev/null | grep skype | sed 's| \+| |g' | cut -d' ' -f5)
